@@ -12,18 +12,17 @@
         }
 
         :root {
-            --bg-light: #ffffff;
-            --bg-card: #f8f9fa;
-            --bg-header: #f1f3f4;
-            --text-primary: #1a1a1a;
-            --text-secondary: #555555;
-            --text-muted: #888888;
-            --accent-blue: #2563eb;
-            --accent-green: #16a34a;
-            --accent-yellow: #d97706;
-            --accent-red: #dc2626;
-            --accent-purple: #9333ea;
-            --border: #e5e7eb;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-header: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #a855f7;
         }
 
         html {
@@ -32,30 +31,54 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-light);
+            background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            padding: 60px 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 40px;
             text-align: center;
-            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%233b82f6" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .header .subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 32px;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
         }
 
         .header-meta {
@@ -70,54 +93,92 @@
         }
 
         .meta-value {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--accent-blue);
         }
 
         .meta-label {
-            font-size: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-header);
+            padding: 16px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover {
+            background: #222;
+            color: var(--text-primary);
         }
 
         /* Main Content */
         .main {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 40px;
         }
 
         /* Section */
         .section {
-            margin-bottom: 50px;
-            page-break-inside: avoid;
+            margin-bottom: 80px;
         }
 
         .section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--accent-blue);
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #222;
         }
 
         .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
-            color: var(--accent-blue);
         }
 
         .section-count {
             margin-left: auto;
-            background: var(--bg-header);
-            padding: 4px 12px;
-            border-radius: 16px;
+            background: #222;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 0.875rem;
             color: var(--text-secondary);
         }
@@ -125,118 +186,114 @@
         /* Test Card */
         .test-card {
             background: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-            page-break-inside: avoid;
+            margin-bottom: 32px;
+            border: 1px solid #222;
         }
 
         .test-header {
             background: var(--bg-header);
-            padding: 16px 20px;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
-            border-bottom: 1px solid var(--border);
         }
 
         .test-id {
             font-family: 'SF Mono', 'Fira Code', monospace;
             font-size: 0.875rem;
             color: var(--accent-blue);
-            background: rgba(37, 99, 235, 0.1);
+            background: rgba(59, 130, 246, 0.1);
             padding: 4px 10px;
             border-radius: 6px;
         }
 
         .test-name {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             font-weight: 600;
             flex: 1;
         }
 
         .badge {
-            padding: 4px 10px;
-            border-radius: 16px;
-            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .badge-hard {
-            background: rgba(217, 119, 6, 0.15);
+            background: rgba(245, 158, 11, 0.2);
             color: var(--accent-yellow);
         }
 
         .badge-very-hard {
-            background: rgba(220, 38, 38, 0.15);
+            background: rgba(239, 68, 68, 0.2);
             color: var(--accent-red);
         }
 
         .badge-medium {
-            background: rgba(22, 163, 74, 0.15);
+            background: rgba(34, 197, 94, 0.2);
             color: var(--accent-green);
         }
 
         .badge-success {
-            background: rgba(22, 163, 74, 0.15);
+            background: rgba(34, 197, 94, 0.2);
             color: var(--accent-green);
         }
 
         .test-body {
-            padding: 20px;
+            padding: 24px;
         }
 
         .prompt-box {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-blue);
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border-left: 3px solid var(--accent-blue);
         }
 
         .prompt-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .prompt-text {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         /* Image Grid */
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .image-slot {
-            background: white;
-            border-radius: 8px;
+            background: #0a0a0a;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--border);
         }
 
         .image-slot-label {
-            padding: 10px 14px;
-            font-size: 0.7rem;
+            padding: 12px 16px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-muted);
-            background: var(--bg-header);
+            background: #111;
             display: flex;
             align-items: center;
             gap: 8px;
-            border-bottom: 1px solid var(--border);
         }
 
         .image-slot-label .dot {
@@ -259,14 +316,13 @@
         .consistency-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 16px;
         }
 
         .consistency-item {
-            background: white;
-            border-radius: 8px;
+            background: #0a0a0a;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--border);
         }
 
         .consistency-item img {
@@ -276,37 +332,34 @@
         }
 
         .consistency-label {
-            padding: 10px;
+            padding: 12px;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            background: var(--bg-header);
         }
 
         /* Criteria */
         .criteria-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 24px;
         }
 
         .criteria-box {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            border: 1px solid var(--border);
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 20px;
         }
 
         .criteria-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 600;
+            gap: 8px;
         }
 
         .criteria-title.success { color: var(--accent-green); }
@@ -317,8 +370,8 @@
         }
 
         .criteria-list li {
-            padding: 4px 0;
-            font-size: 0.8rem;
+            padding: 6px 0;
+            font-size: 0.875rem;
             color: var(--text-secondary);
             display: flex;
             align-items: flex-start;
@@ -330,7 +383,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            margin-top: 6px;
+            margin-top: 7px;
             flex-shrink: 0;
         }
 
@@ -345,140 +398,170 @@
         /* Stats Bar */
         .stats-bar {
             display: flex;
-            gap: 16px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
         }
 
         .stat {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
+        }
+
+        .stat-icon {
+            font-size: 1rem;
         }
 
         /* Summary Section */
         .summary-section {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 40px;
-            color: white;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 60px;
         }
 
         .summary-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             text-align: center;
         }
 
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
         }
 
         .summary-card {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
             text-align: center;
         }
 
         .summary-card-value {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
         .summary-card-label {
-            font-size: 0.75rem;
-            opacity: 0.9;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px 40px;
             color: var(--text-muted);
             font-size: 0.875rem;
-            border-top: 1px solid var(--border);
         }
 
-        /* Print styles */
-        @media print {
-            .section { page-break-inside: avoid; }
-            .test-card { page-break-inside: avoid; }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .header .subtitle { font-size: 1rem; }
+            .header-meta { gap: 20px; }
+            .meta-value { font-size: 1.75rem; }
+            .main { padding: 20px; }
             .criteria-grid { grid-template-columns: 1fr; }
             .consistency-grid { grid-template-columns: 1fr; }
-            .summary-grid { grid-template-columns: repeat(2, 1fr); }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .test-card {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <h1>MUSE Model Evaluation</h1>
-        <p class="subtitle">Qwen-Image-Edit-2509 Interior Design Capability Assessment</p>
-        <div class="header-meta">
-            <div class="meta-item">
-                <div class="meta-value">16</div>
-                <div class="meta-label">Total Tests</div>
-            </div>
-            <div class="meta-item">
-                <div class="meta-value">100%</div>
-                <div class="meta-label">Success Rate</div>
-            </div>
-            <div class="meta-item">
-                <div class="meta-value">13s</div>
-                <div class="meta-label">Avg. Time</div>
-            </div>
-            <div class="meta-item">
-                <div class="meta-value">8</div>
-                <div class="meta-label">Categories</div>
+        <div class="header-content">
+            <h1>MUSE Model Evaluation</h1>
+            <p class="subtitle">Qwen-Image-Edit-2509 Interior Design Capability Assessment</p>
+            <div class="header-meta">
+                <div class="meta-item">
+                    <div class="meta-value">16</div>
+                    <div class="meta-label">Total Tests</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value" style="color: var(--accent-green);">100%</div>
+                    <div class="meta-label">Success Rate</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value">13s</div>
+                    <div class="meta-label">Avg. Time</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value">8</div>
+                    <div class="meta-label">Categories</div>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#summary">Summary</a>
+            <a href="#precise-scale">Precise Scale</a>
+            <a href="#product-replication">Product Replication</a>
+            <a href="#multi-element">Multi-Element</a>
+            <a href="#photorealistic">Photorealistic</a>
+            <a href="#consistency">Consistency</a>
+            <a href="#material-transfer">Material Transfer</a>
+            <a href="#style-transfer">Style Transfer</a>
+            <a href="#edge-cases">Edge Cases</a>
+        </div>
+    </nav>
+
     <!-- Main Content -->
     <main class="main">
         <!-- Summary -->
-        <section class="summary-section">
+        <section id="summary" class="summary-section">
             <h2 class="summary-title">Test Run Summary</h2>
             <div class="summary-grid">
                 <div class="summary-card">
-                    <div class="summary-card-value">16/16</div>
+                    <div class="summary-card-value" style="color: var(--accent-green);">16/16</div>
                     <div class="summary-card-label">Tests Generated</div>
                 </div>
                 <div class="summary-card">
-                    <div class="summary-card-value">5</div>
+                    <div class="summary-card-value" style="color: var(--accent-blue);">5</div>
                     <div class="summary-card-label">Multi-Image Tests</div>
                 </div>
                 <div class="summary-card">
-                    <div class="summary-card-value">6</div>
+                    <div class="summary-card-value" style="color: var(--accent-yellow);">6</div>
                     <div class="summary-card-label">Very Hard Tests</div>
                 </div>
                 <div class="summary-card">
-                    <div class="summary-card-value">34.5s</div>
+                    <div class="summary-card-value" style="color: var(--accent-purple);">34.5s</div>
                     <div class="summary-card-label">Longest (Style)</div>
                 </div>
             </div>
         </section>
 
         <!-- Precise Scale -->
-        <section class="section">
+        <section id="precise-scale" class="section">
             <div class="section-header">
-                <span class="section-icon">📐</span>
+                <div class="section-icon" style="background: rgba(59, 130, 246, 0.2);">&#x1F4D0;</div>
                 <h2 class="section-title">Precise Scale</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Scale 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">scale_001</span>
@@ -503,16 +586,16 @@
                     </div>
                     <div class="criteria-grid">
                         <div class="criteria-box success">
-                            <div class="criteria-title success">✓ Success Criteria</div>
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
                             <ul class="criteria-list">
-                                <li>Sofa proportionally sized to wall</li>
+                                <li>Sofa proportionally sized to wall (not too big/small)</li>
                                 <li>L-shape orientation correct</li>
-                                <li>Scale relationship maintained</li>
+                                <li>Scale relationship with other furniture maintained</li>
                                 <li>Fabric texture visible</li>
                             </ul>
                         </div>
                         <div class="criteria-box failure">
-                            <div class="criteria-title failure">✗ Failure Indicators</div>
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
                             <ul class="criteria-list">
                                 <li>Sofa obviously wrong scale</li>
                                 <li>Floating or clipping into floor</li>
@@ -521,12 +604,13 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 12.9s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 12.9s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Scale 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">scale_002</span>
@@ -537,7 +621,7 @@
                 <div class="test-body">
                     <div class="prompt-box">
                         <div class="prompt-label">Prompt</div>
-                        <div class="prompt-text">Add a large globe pendant light centered above the dining table. The pendant should hang at standard dining height - low enough to illuminate the table but high enough to not obstruct views. Warm brass finish, frosted glass globe approximately 50cm diameter.</div>
+                        <div class="prompt-text">Add a large globe pendant light centered above the dining table. The pendant should hang at standard dining height - low enough to illuminate the table but high enough to not obstruct views across the table. Warm brass finish, frosted glass globe approximately 50cm diameter.</div>
                     </div>
                     <div class="image-grid">
                         <div class="image-slot">
@@ -549,22 +633,42 @@
                             <img src="Precise_Scale/scale_002_020417.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Pendant centered over table</li>
+                                <li>Height looks appropriate for dining</li>
+                                <li>Scale proportional to table size</li>
+                                <li>Brass/glass materials visible</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Pendant too high (near ceiling) or too low (in face)</li>
+                                <li>Dramatically wrong size</li>
+                                <li>Off-center placement</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 12.9s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 12.9s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Product Replication -->
-        <section class="section">
+        <section id="product-replication" class="section">
             <div class="section-header">
-                <span class="section-icon">🪑</span>
+                <div class="section-icon" style="background: rgba(168, 85, 247, 0.2);">&#x1FA91;</div>
                 <h2 class="section-title">Product Replication</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Product 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">product_001</span>
@@ -575,7 +679,7 @@
                 <div class="test-body">
                     <div class="prompt-box">
                         <div class="prompt-label">Prompt</div>
-                        <div class="prompt-text">Place the tufted accent chair from the reference image in the corner by the window, replacing the existing armchair. Match the exact design - button tufting, curved back, turned legs. Position angled toward the room.</div>
+                        <div class="prompt-text">Place the tufted accent chair from the reference image in the corner by the window, replacing the existing armchair. Match the exact design - button tufting, curved back, turned legs. Position angled toward the room. The chair should integrate naturally with the room's lighting.</div>
                     </div>
                     <div class="image-grid">
                         <div class="image-slot">
@@ -591,13 +695,35 @@
                             <img src="Product_Replication/product_001_020434.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Recognizable as the reference chair style</li>
+                                <li>Correct proportions and details</li>
+                                <li>Button tufting visible</li>
+                                <li>Turned legs present</li>
+                                <li>Natural lighting integration</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Generic chair instead of reference style</li>
+                                <li>Wrong proportions or details</li>
+                                <li>Tufting missing</li>
+                                <li>Materials clearly wrong</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 15.5s</span>
-                        <span class="stat">🖼 2 images (multi-image)</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 15.5s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 2 images (multi-image)</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Product 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">product_002</span>
@@ -608,7 +734,7 @@
                 <div class="test-body">
                     <div class="prompt-box">
                         <div class="prompt-label">Prompt</div>
-                        <div class="prompt-text">Replace the dining chairs with chairs matching the style from the reference image - elegant tufted design with turned legs. Keep the same count of chairs and their positions around the table.</div>
+                        <div class="prompt-text">Replace the dining chairs with chairs matching the style from the reference image - elegant tufted design with turned legs. Keep the same count of chairs and their positions around the table. Scale appropriately for dining height.</div>
                     </div>
                     <div class="image-grid">
                         <div class="image-slot">
@@ -625,21 +751,22 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 13.9s</span>
-                        <span class="stat">🖼 2 images (multi-image)</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 13.9s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 2 images (multi-image)</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Multi-Element -->
-        <section class="section">
+        <section id="multi-element" class="section">
             <div class="section-header">
-                <span class="section-icon">🎨</span>
+                <div class="section-icon" style="background: rgba(239, 68, 68, 0.2);">&#x1F3A8;</div>
                 <h2 class="section-title">Multi-Element</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Complex 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">complex_001</span>
@@ -662,13 +789,35 @@
                             <img src="Multi-Element/complex_001_020507.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Wall color changed to green</li>
+                                <li>Sofa replaced with cream sectional</li>
+                                <li>Persian rug added with correct colors</li>
+                                <li>Coffee table is round marble/brass</li>
+                                <li>Lighting and artwork preserved</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Only some changes applied</li>
+                                <li>Elements that should be preserved were changed</li>
+                                <li>Incoherent result / visual chaos</li>
+                                <li>Items missing entirely</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 12.1s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 12.1s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Complex 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">complex_002</span>
@@ -692,21 +841,22 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 10.5s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 10.5s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Photorealistic Integration -->
-        <section class="section">
+        <section id="photorealistic" class="section">
             <div class="section-header">
-                <span class="section-icon">✨</span>
+                <div class="section-icon" style="background: rgba(245, 158, 11, 0.2);">&#x2728;</div>
                 <h2 class="section-title">Photorealistic Integration</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Realism 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">realism_001</span>
@@ -729,13 +879,35 @@
                             <img src="Photorealistic_Integration/realism_001_020540.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Floor lamp placed correctly</li>
+                                <li>Shadow direction matches room lighting</li>
+                                <li>Light glow through shade visible</li>
+                                <li>Materials look realistic</li>
+                                <li>Edges clean (not floating/clipping)</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>No shadow or wrong direction</li>
+                                <li>Lamp appears pasted/floating</li>
+                                <li>Harsh edges / obvious compositing</li>
+                                <li>Material looks CG/fake</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 13.1s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 13.1s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Realism 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">realism_002</span>
@@ -759,17 +931,17 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 14.2s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 14.2s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Consistency -->
-        <section class="section">
+        <section id="consistency" class="section">
             <div class="section-header">
-                <span class="section-icon">🔄</span>
+                <div class="section-icon" style="background: rgba(34, 197, 94, 0.2);">&#x1F504;</div>
                 <h2 class="section-title">Consistency</h2>
                 <span class="section-count">3 runs</span>
             </div>
@@ -787,14 +959,14 @@
                         <div class="prompt-text">Change the sofa to a mid-century modern style in mustard yellow velvet. Wooden tapered legs, clean lines, slightly angled back. Keep everything else exactly the same.</div>
                     </div>
 
-                    <div style="margin-bottom: 20px;">
-                        <div class="image-slot-label" style="background: transparent; padding: 0 0 8px 0; border: none;"><span class="dot dot-original"></span>Original Input</div>
-                        <div class="image-slot" style="max-width: 350px;">
+                    <div style="margin-bottom: 24px;">
+                        <div class="image-slot-label" style="background: transparent; padding: 0 0 12px 0;"><span class="dot dot-original"></span>Original Input</div>
+                        <div class="image-slot" style="max-width: 400px;">
                             <img src="test_images/living_room.jpg" alt="Original">
                         </div>
                     </div>
 
-                    <div class="image-slot-label" style="background: transparent; padding: 0 0 8px 0; border: none;"><span class="dot dot-result"></span>Three Consecutive Runs</div>
+                    <div class="image-slot-label" style="background: transparent; padding: 0 0 12px 0;"><span class="dot dot-result"></span>Three Consecutive Runs</div>
                     <div class="consistency-grid">
                         <div class="consistency-item">
                             <img src="Consistency/consistency_001_020615.png" alt="Run 1">
@@ -809,18 +981,39 @@
                             <div class="consistency-label">Run 3 (11.8s)</div>
                         </div>
                     </div>
+
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Sofa is mid-century style</li>
+                                <li>Color is mustard yellow</li>
+                                <li>Velvet texture visible</li>
+                                <li>Wooden legs present</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Drastically different results each run</li>
+                                <li>Style inconsistent between runs</li>
+                                <li>Color varies significantly</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Material Transfer -->
-        <section class="section">
+        <section id="material-transfer" class="section">
             <div class="section-header">
-                <span class="section-icon">🪨</span>
+                <div class="section-icon" style="background: rgba(6, 182, 212, 0.2);">&#x1FAA8;</div>
                 <h2 class="section-title">Material Transfer</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Material 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">material_001</span>
@@ -831,7 +1024,7 @@
                 <div class="test-body">
                     <div class="prompt-box">
                         <div class="prompt-label">Prompt</div>
-                        <div class="prompt-text">Replace the kitchen countertops with the marble from the reference image. Match the exact vein pattern, color, and finish. Apply consistently across all counter surfaces including the island.</div>
+                        <div class="prompt-text">Replace the kitchen countertops with the marble from the reference image. Match the exact vein pattern, color, and finish. Apply consistently across all counter surfaces including the island. Maintain edge profile and thickness.</div>
                     </div>
                     <div class="image-grid">
                         <div class="image-slot">
@@ -848,12 +1041,13 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 11.4s</span>
-                        <span class="stat">🖼 2 images (multi-image)</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 11.4s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 2 images (multi-image)</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Material 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">material_002</span>
@@ -881,17 +1075,17 @@
                         </div>
                     </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 19.0s</span>
-                        <span class="stat">🖼 2 images (multi-image)</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 19.0s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 2 images (multi-image)</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Style Transfer -->
-        <section class="section">
+        <section id="style-transfer" class="section">
             <div class="section-header">
-                <span class="section-icon">🏠</span>
+                <div class="section-icon" style="background: rgba(236, 72, 153, 0.2);">&#x1F3E0;</div>
                 <h2 class="section-title">Style Transfer</h2>
                 <span class="section-count">1 test</span>
             </div>
@@ -922,22 +1116,45 @@
                             <img src="Style_Transfer/style_001_020816.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Overall Japandi feel achieved</li>
+                                <li>Low-profile furniture</li>
+                                <li>Warm neutral palette</li>
+                                <li>Natural materials visible</li>
+                                <li>Space feels intentionally minimal</li>
+                                <li>Room architecture preserved</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Style doesn't read as Japandi</li>
+                                <li>Too cluttered or too empty</li>
+                                <li>Colors wrong for style</li>
+                                <li>Architecture modified</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 34.5s (longest)</span>
-                        <span class="stat">🖼 2 images (multi-image)</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 34.5s (longest)</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 2 images (multi-image)</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Edge Cases -->
-        <section class="section">
+        <section id="edge-cases" class="section">
             <div class="section-header">
-                <span class="section-icon">⚠️</span>
+                <div class="section-icon" style="background: rgba(107, 114, 128, 0.2);">&#x26A0;</div>
                 <h2 class="section-title">Edge Cases</h2>
                 <span class="section-count">2 tests</span>
             </div>
 
+            <!-- Edge 001 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">edge_001</span>
@@ -960,13 +1177,35 @@
                             <img src="Edge_Cases/edge_001_020829.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Wall color changed</li>
+                                <li>Every single other element identical</li>
+                                <li>No furniture moved</li>
+                                <li>Art/decor unchanged</li>
+                                <li>Lighting unchanged</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Other elements modified</li>
+                                <li>Furniture positions changed</li>
+                                <li>Items removed or added</li>
+                                <li>Lighting/mood shifted</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 10.8s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 10.8s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Edge 002 -->
             <div class="test-card">
                 <div class="test-header">
                     <span class="test-id">edge_002</span>
@@ -989,9 +1228,30 @@
                             <img src="Edge_Cases/edge_002_020843.png" alt="Result">
                         </div>
                     </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-box success">
+                            <div class="criteria-title success">&#x2713; Success Criteria</div>
+                            <ul class="criteria-list">
+                                <li>Coffee table removed</li>
+                                <li>Floor filled in naturally</li>
+                                <li>Floor matches existing</li>
+                                <li>Nothing else changed</li>
+                                <li>No artifacts where table was</li>
+                            </ul>
+                        </div>
+                        <div class="criteria-box failure">
+                            <div class="criteria-title failure">&#x2717; Failure Indicators</div>
+                            <ul class="criteria-list">
+                                <li>Table partially visible</li>
+                                <li>Floor fill obvious/wrong</li>
+                                <li>Other furniture moved</li>
+                                <li>Artifacts or smearing</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="stats-bar">
-                        <span class="stat">⏱ 11.3s</span>
-                        <span class="stat">🖼 1 image</span>
+                        <span class="stat"><span class="stat-icon">&#x23F1;</span> 11.3s</span>
+                        <span class="stat"><span class="stat-icon">&#x1F5BC;</span> 1 image</span>
                     </div>
                 </div>
             </div>
@@ -1000,7 +1260,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p><strong>MUSE Model Evaluation Framework</strong></p>
+        <p>MUSE Model Evaluation Framework</p>
         <p style="margin-top: 8px;">Model: qwen/qwen-image-edit-plus | Run: December 15, 2025</p>
     </footer>
 </body>
